@@ -3,6 +3,7 @@ package com.boot.quantitymeasurement.service;
 
 import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.model.MainUnit;
+import com.boot.quantitymeasurement.model.QuantityConverter;
 import com.boot.quantitymeasurement.model.SubUnit;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,10 @@ public class QuantityService {
     }
 
     public List<SubUnit> getSubUnit(MainUnitDto mainUnit) {
+        return null;
+    }
+
+    public QuantityConverter getConvertedQuantity(QuantityConverter quantity) {
         return null;
     }
 }
