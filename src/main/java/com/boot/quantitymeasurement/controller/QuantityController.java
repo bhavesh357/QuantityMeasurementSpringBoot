@@ -4,6 +4,8 @@ import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.model.MainUnit;
 import com.boot.quantitymeasurement.model.QuantityConverter;
 import com.boot.quantitymeasurement.model.SubUnit;
+import com.boot.quantitymeasurement.service.QuantityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +13,12 @@ import java.util.List;
 @RestController
 public class QuantityController {
 
+    @Autowired
+    QuantityService service;
+
     @GetMapping("/")
     public List<MainUnit> getMainUnit(){
-        return null;
+        return service.getMainUnit();
     }
 
     @GetMapping("/unit")
