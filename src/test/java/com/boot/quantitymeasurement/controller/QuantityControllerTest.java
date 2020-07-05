@@ -1,7 +1,12 @@
 package com.boot.quantitymeasurement.controller;
 
 
+import com.boot.quantitymeasurement.dto.MainUnitDto;
+import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.model.MainUnit;
+import com.boot.quantitymeasurement.model.SubUnit;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +36,7 @@ class QuantityControllerTest {
     private MockMvc mockMvc;
 
     private List<MainUnit> mainUnits;
+    private List<SubUnit> subUnits;
 
     @MockBean
     private QuantityController controller;
@@ -40,6 +46,17 @@ class QuantityControllerTest {
         Mockito.when(controller.getMainUnit()).thenReturn(mainUnits);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/").
                 accept(MediaType.ALL);
+        MvcResult mvcResult = mockMvc.perform(request).andReturn();
+        Assert.assertEquals(200,mvcResult.getResponse().getStatus());
+    }
+
+    @Test
+    void givenMainUnit_WhenGet_ShouldReturnSubUnitList() throws Exception {
+        MainUnitDto mainUnitDto = new MainUnitDto();
+        mainUnitDto.setUnit(Unit.MainUnit.Length);
+        Mockito.when(controller.getSubUnit(Mockito.any(MainUnitDto.class))).thenReturn(subUnits);
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
+                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(mainUnitDto)).contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
     }
