@@ -22,8 +22,8 @@ public class QuantityController {
     }
 
     @GetMapping("/unit")
-    public List<SubUnit> getSubUnit(@RequestBody MainUnitDto mainUnitDto){
-        return null;
+    public List<SubUnit> getSubUnit(@RequestBody MainUnitDto mainUnit){
+        return service.getSubUnit(mainUnit);
     }
 
     @PostMapping("/unit")
