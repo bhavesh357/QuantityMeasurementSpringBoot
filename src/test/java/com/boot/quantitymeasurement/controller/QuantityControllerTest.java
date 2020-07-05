@@ -4,8 +4,8 @@ package com.boot.quantitymeasurement.controller;
 import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.model.MainUnit;
+import com.boot.quantitymeasurement.model.QuantityConverter;
 import com.boot.quantitymeasurement.model.SubUnit;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -22,10 +22,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.List;
-
-import java.util.List;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -53,10 +49,25 @@ class QuantityControllerTest {
     @Test
     void givenMainUnit_WhenGet_ShouldReturnSubUnitList() throws Exception {
         MainUnitDto mainUnitDto = new MainUnitDto();
-        mainUnitDto.setUnit(Unit.MainUnit.Length);
+        mainUnitDto.setUnit(Unit.MainUnit.LENGTH);
         Mockito.when(controller.getSubUnit(Mockito.any(MainUnitDto.class))).thenReturn(subUnits);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
                 accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(mainUnitDto)).contentType(MediaType.APPLICATION_JSON);
+        MvcResult mvcResult = mockMvc.perform(request).andReturn();
+        Assert.assertEquals(200,mvcResult.getResponse().getStatus());
+    }
+
+    @Test
+    void givenQuantity_WhenGet_ShouldReturnConvertedQuantity() throws Exception {
+        QuantityConverter quantity= new QuantityConverter();
+        quantity.setUnit(Unit.MainUnit.LENGTH);
+        quantity.setUnitOne(Unit.SubUnit.FEET);
+        quantity.setUnitTwo(Unit.SubUnit.INCH);
+        quantity.setSizeOne(1);
+        Mockito.when(controller.getConvertedQuantity(Mockito.any(QuantityConverter.class))).
+                thenReturn(Mockito.any(QuantityConverter.class));
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
+                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(quantity)).contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
     }

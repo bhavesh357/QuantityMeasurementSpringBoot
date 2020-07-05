@@ -2,9 +2,11 @@ package com.boot.quantitymeasurement.enums;
 
 public class Unit {
     public enum MainUnit {
-        Length
+        LENGTH
 
     }
 
-    public enum SubUnit {}
+    public enum SubUnit {
+        FEET,INCH
+    }
 }
