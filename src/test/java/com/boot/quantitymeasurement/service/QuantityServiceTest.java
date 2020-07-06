@@ -80,4 +80,10 @@ class QuantityServiceTest {
         Assert.assertEquals(100,quantity1.getSizeTwo());
     }
 
+    @Test
+    public void givenQuantity_WhenTempCToF_ShouldReturnConvertedQuantity() {
+        Quantity quantity = new Quantity(Unit.MainUnit.TEMP, Unit.SubUnit.C, 100, Unit.SubUnit.F, 0);
+        Quantity quantity1 = service.getConvertedQuantity(quantity);
+        Assert.assertEquals(212,quantity1.getSizeTwo());
+    }
 }
