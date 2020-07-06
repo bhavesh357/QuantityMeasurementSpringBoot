@@ -2,7 +2,7 @@ package com.boot.quantitymeasurement.model;
 
 import com.boot.quantitymeasurement.enums.Unit;
 
-public class QuantityConverter {
+public class Quantity {
 
     private Unit.MainUnit mainUnit;
 
@@ -14,7 +14,7 @@ public class QuantityConverter {
 
     private int sizeTwo;
 
-    public QuantityConverter(Unit.MainUnit mainUnit, Unit.SubUnit unitOne, int sizeOne, Unit.SubUnit unitTwo, int sizetwo) {
+    public Quantity(Unit.MainUnit mainUnit, Unit.SubUnit unitOne, int sizeOne, Unit.SubUnit unitTwo, int sizetwo) {
         this.mainUnit = mainUnit;
         this.unitOne = unitOne;
         this.sizeOne = sizeOne;

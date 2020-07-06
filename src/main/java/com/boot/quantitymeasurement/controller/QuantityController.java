@@ -1,8 +1,7 @@
 package com.boot.quantitymeasurement.controller;
 
-import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.enums.Unit;
-import com.boot.quantitymeasurement.model.QuantityConverter;
+import com.boot.quantitymeasurement.model.Quantity;
 import com.boot.quantitymeasurement.service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class QuantityController {
     }
 
     @PostMapping("/unit")
-    public QuantityConverter getConvertedQuantity(@RequestBody QuantityConverter quantity){
+    public Quantity getConvertedQuantity(@RequestBody Quantity quantity){
         return null;
     }
 }

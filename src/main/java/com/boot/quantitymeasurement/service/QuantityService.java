@@ -1,18 +1,20 @@
 package com.boot.quantitymeasurement.service;
 
 
-import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.enums.Unit;
-import com.boot.quantitymeasurement.model.QuantityConverter;
+import com.boot.quantitymeasurement.model.Quantity;
 import org.springframework.stereotype.Service;
+import sun.security.util.Length;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class QuantityService {
+
+    public MainUnit mainUnitConverter;
+
     public List<Unit.MainUnit> getMainUnit() {
         List<Unit.MainUnit> mainUnits = new ArrayList<>();
         Arrays.stream(Unit.MainUnit.values()).forEach(u -> mainUnits.add(u));
@@ -27,7 +29,10 @@ public class QuantityService {
         return subUnits;
     }
 
-    public QuantityConverter getConvertedQuantity(QuantityConverter quantity) {
-        return null;
+    public Quantity getConvertedQuantity(Quantity quantity) {
+        if(quantity.getMainUnit().equals(Unit.MainUnit.LENGTH)){
+            mainUnitConverter = new LengthUnit();
+        }
+        return mainUnitConverter.getConvertedQuantity(quantity);
     }
 }

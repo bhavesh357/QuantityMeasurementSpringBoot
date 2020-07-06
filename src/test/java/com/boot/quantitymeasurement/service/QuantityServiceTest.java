@@ -2,6 +2,7 @@ package com.boot.quantitymeasurement.service;
 
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.model.Quantity;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -38,5 +39,12 @@ class QuantityServiceTest {
                 filter(u -> u.getMainUnit().equals(Unit.MainUnit.LENGTH)).
                 forEach(u -> subUnits.add(u));
         Assert.assertEquals(subUnits,service.getSubUnit(Unit.MainUnit.LENGTH));
+    }
+
+    @Test
+    public void givenQuantity_ShouldReturnConvertedQuantity() {
+        Quantity quantity = new Quantity(Unit.MainUnit.LENGTH, Unit.SubUnit.FEET, 1, Unit.SubUnit.INCH, 0);
+        Quantity quantity1 = service.getConvertedQuantity(quantity);
+        Assert.assertEquals(12,quantity1.getSizeTwo());
     }
 }

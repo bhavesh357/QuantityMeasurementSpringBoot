@@ -7,7 +7,7 @@ public class Unit {
     }
 
     public enum SubUnit {
-        FEET(MainUnit.LENGTH),INCH(MainUnit.LENGTH),KG(MainUnit.WEIGHT);
+        FEET(MainUnit.LENGTH),INCH(MainUnit.LENGTH), CM(MainUnit.LENGTH), YARD(MainUnit.LENGTH),KG(MainUnit.WEIGHT);
         private MainUnit mainUnit;
 
 
