@@ -47,11 +47,10 @@ class QuantityControllerTest {
 
     @Test
     void givenMainUnit_WhenGet_ShouldReturnSubUnitList() throws Exception {
-        MainUnitDto mainUnitDto = new MainUnitDto();
-        mainUnitDto.setUnit(Unit.MainUnit.LENGTH);
-        Mockito.when(service.getSubUnit(Mockito.any(MainUnitDto.class))).thenReturn(subUnits);
+        Mockito.when(service.getSubUnit(Mockito.any(Unit.MainUnit.class))).thenReturn(subUnits);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
-                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(mainUnitDto)).contentType(MediaType.APPLICATION_JSON);
+                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(Unit.MainUnit.LENGTH)).
+                contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
     }

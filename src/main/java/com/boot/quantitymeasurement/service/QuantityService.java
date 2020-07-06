@@ -14,7 +14,7 @@ public class QuantityService {
         return null;
     }
 
-    public List<Unit.SubUnit> getSubUnit(MainUnitDto mainUnit) {
+    public List<Unit.SubUnit> getSubUnit(Unit.MainUnit mainUnit) {
         return null;
     }
 
