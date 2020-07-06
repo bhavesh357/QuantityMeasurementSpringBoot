@@ -95,4 +95,11 @@ class QuantityServiceTest {
         Quantity quantity1 = service.getConvertedQuantity(quantity);
         Assert.assertEquals(3,quantity1.getSizeTwo());
     }
+
+    @Test
+    public void givenQuantity_WhenVolumeMLToLitre_ShouldReturnConvertedQuantity() {
+        Quantity quantity = new Quantity(Unit.MainUnit.VOLUME, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
+        Quantity quantity1 = service.getConvertedQuantity(quantity);
+        Assert.assertEquals(3,quantity1.getSizeTwo());
+    }
 }
