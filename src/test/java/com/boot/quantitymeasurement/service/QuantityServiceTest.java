@@ -47,4 +47,16 @@ class QuantityServiceTest {
         Quantity quantity1 = service.getConvertedQuantity(quantity);
         Assert.assertEquals(12,quantity1.getSizeTwo());
     }
+
+    @Test
+    public void givenQuantity_WhenInchAndFeet_ShouldReturnConvertedQuantity() {
+        Quantity quantity = new Quantity(Unit.MainUnit.LENGTH, Unit.SubUnit.INCH, 24, Unit.SubUnit.FEET, 0);
+        Quantity quantity1 = service.getConvertedQuantity(quantity);
+        Assert.assertEquals(2,quantity1.getSizeTwo());
+    }
+
+    // length tests end here
+
+
+
 }
