@@ -37,6 +37,9 @@ public class QuantityService {
             case WEIGHT:
                 mainUnitConverter= new WeightUnit();
                 break;
+            case TEMP:
+                mainUnitConverter = new TempUnit();
+                break;
         }
         return mainUnitConverter.getConvertedQuantity(quantity);
     }

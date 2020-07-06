@@ -2,12 +2,12 @@ package com.boot.quantitymeasurement.enums;
 
 public class Unit {
     public enum MainUnit {
-        LENGTH,WEIGHT
+        LENGTH, TEMP, WEIGHT
 
     }
 
     public enum SubUnit {
-        FEET(MainUnit.LENGTH),INCH(MainUnit.LENGTH), CM(MainUnit.LENGTH), YARD(MainUnit.LENGTH),KG(MainUnit.WEIGHT), GRAM(MainUnit.WEIGHT), TON(MainUnit.WEIGHT);
+        FEET(MainUnit.LENGTH),INCH(MainUnit.LENGTH), CM(MainUnit.LENGTH), YARD(MainUnit.LENGTH),KG(MainUnit.WEIGHT), GRAM(MainUnit.WEIGHT), TON(MainUnit.WEIGHT), F(MainUnit.TEMP), C(MainUnit.TEMP);
         private MainUnit mainUnit;
 
 
