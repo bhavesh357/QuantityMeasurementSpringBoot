@@ -26,6 +26,6 @@ public class QuantityController {
 
     @PostMapping("/unit")
     public Quantity getConvertedQuantity(@RequestBody Quantity quantity){
-        return null;
+        return service.getConvertedQuantity(quantity);
     }
 }
