@@ -30,8 +30,13 @@ public class QuantityService {
     }
 
     public Quantity getConvertedQuantity(Quantity quantity) {
-        if(quantity.getMainUnit().equals(Unit.MainUnit.LENGTH)){
-            mainUnitConverter = new LengthUnit();
+        switch (quantity.getMainUnit()){
+            case LENGTH:
+                mainUnitConverter= new LengthUnit();
+                break;
+            case WEIGHT:
+                mainUnitConverter= new WeightUnit();
+                break;
         }
         return mainUnitConverter.getConvertedQuantity(quantity);
     }

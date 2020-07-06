@@ -42,7 +42,7 @@ class QuantityServiceTest {
     }
 
     @Test
-    public void givenQuantity_ShouldReturnConvertedQuantity() {
+    public void givenQuantity_WhenLengthShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.LENGTH, Unit.SubUnit.FEET, 1, Unit.SubUnit.INCH, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
         Assert.assertEquals(12,quantity1.getSizeTwo());
@@ -57,6 +57,11 @@ class QuantityServiceTest {
 
     // length tests end here
 
-
+    @Test
+    public void givenQuantity_WhenWeight_ShouldReturnConvertedQuantity() {
+        Quantity quantity = new Quantity(Unit.MainUnit.WEIGHT, Unit.SubUnit.GRAM, 1000000, Unit.SubUnit.TON, 0);
+        Quantity quantity1 = service.getConvertedQuantity(quantity);
+        Assert.assertEquals(1,quantity1.getSizeTwo());
+    }
 
 }
