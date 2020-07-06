@@ -64,4 +64,11 @@ class QuantityServiceTest {
         Assert.assertEquals(1,quantity1.getSizeTwo());
     }
 
+    @Test
+    public void givenQuantity_WhenWeightTonAndKG_ShouldReturnConvertedQuantity() {
+        Quantity quantity = new Quantity(Unit.MainUnit.WEIGHT, Unit.SubUnit.TON, 3, Unit.SubUnit.KG, 0);
+        Quantity quantity1 = service.getConvertedQuantity(quantity);
+        Assert.assertEquals(3000,quantity1.getSizeTwo());
+    }
+
 }
