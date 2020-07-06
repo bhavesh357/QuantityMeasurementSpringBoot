@@ -20,7 +20,11 @@ public class QuantityService {
     }
 
     public List<Unit.SubUnit> getSubUnit(Unit.MainUnit mainUnit) {
-        return null;
+        ArrayList<Unit.SubUnit> subUnits = new ArrayList<>();
+        Arrays.stream(Unit.SubUnit.values()).
+                filter(u -> u.getMainUnit().equals(mainUnit)).
+                    forEach(u -> subUnits.add(u));
+        return subUnits;
     }
 
     public QuantityConverter getConvertedQuantity(QuantityConverter quantity) {

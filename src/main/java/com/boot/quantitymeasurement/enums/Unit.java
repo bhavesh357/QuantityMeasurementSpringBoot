@@ -2,12 +2,23 @@ package com.boot.quantitymeasurement.enums;
 
 public class Unit {
     public enum MainUnit {
-        LENGTH
+        LENGTH,WEIGHT
 
     }
 
     public enum SubUnit {
-        FEET,INCH
+        FEET(MainUnit.LENGTH),INCH(MainUnit.LENGTH),KG(MainUnit.WEIGHT);
+        private MainUnit mainUnit;
+
+
+        SubUnit(MainUnit mainUnit) {
+            this.mainUnit=mainUnit;
+        }
+
+        public MainUnit getMainUnit() {
+            return mainUnit;
+        }
     }
+
 
 }

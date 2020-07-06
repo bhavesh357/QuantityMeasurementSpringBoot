@@ -30,4 +30,13 @@ class QuantityServiceTest {
         List<Unit.MainUnit> returnedUnitList = service.getMainUnit();
         Assert.assertEquals(mainUnits,returnedUnitList);
     }
+
+    @Test
+    public void givenMainUnit_ShouldReturnList() {
+        ArrayList<Unit.SubUnit> subUnits = new ArrayList<>();
+        Arrays.stream(Unit.SubUnit.values()).
+                filter(u -> u.getMainUnit().equals(Unit.MainUnit.LENGTH)).
+                forEach(u -> subUnits.add(u));
+        Assert.assertEquals(subUnits,service.getSubUnit(Unit.MainUnit.LENGTH));
+    }
 }
