@@ -6,13 +6,13 @@ import com.boot.quantitymeasurement.model.Quantity;
 public class TempUnit implements MainUnit {
     @Override
     public Quantity getConvertedQuantity(Quantity quantity) {
-        int intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
+        double intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
         quantity.setSizeTwo(getInConvertedUnit(quantity.getUnitTwo(),intoBaseUnit));
         return quantity;
     }
 
     @Override
-    public int getInConvertedUnit(Unit.SubUnit unitTwo, int intoBaseUnit) {
+    public double getInConvertedUnit(Unit.SubUnit unitTwo, double intoBaseUnit) {
         switch (unitTwo) {
             case F:
                 return ( (intoBaseUnit/5) * 9) +32;
@@ -22,7 +22,7 @@ public class TempUnit implements MainUnit {
     }
 
     @Override
-    public int getIntoBaseUnit(Unit.SubUnit unitOne, int sizeOne) {
+    public double getIntoBaseUnit(Unit.SubUnit unitOne, double sizeOne) {
         switch (unitOne) {
             case F:
                 return ( (sizeOne-32) / 9) * 5;

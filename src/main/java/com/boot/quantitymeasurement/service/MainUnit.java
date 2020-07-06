@@ -7,7 +7,7 @@ public interface MainUnit {
 
     Quantity getConvertedQuantity(Quantity quantity);
 
-    int getInConvertedUnit(Unit.SubUnit unitTwo, int intoBaseUnit);
+    double getInConvertedUnit(Unit.SubUnit unitTwo, double intoBaseUnit);
 
-    int getIntoBaseUnit(Unit.SubUnit unitOne, int sizeOne);
+    double getIntoBaseUnit(Unit.SubUnit unitOne, double sizeOne);
 }

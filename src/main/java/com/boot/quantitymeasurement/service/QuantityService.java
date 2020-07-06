@@ -4,7 +4,6 @@ package com.boot.quantitymeasurement.service;
 import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.model.Quantity;
 import org.springframework.stereotype.Service;
-import sun.security.util.Length;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +40,7 @@ public class QuantityService {
                 mainUnitConverter = new TempUnit();
                 break;
             default:
-                mainUnitConverter = new VolumUnit();
+                mainUnitConverter = new VolumeUnit();
         }
         return mainUnitConverter.getConvertedQuantity(quantity);
     }

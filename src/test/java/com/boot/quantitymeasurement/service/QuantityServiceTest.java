@@ -45,14 +45,14 @@ class QuantityServiceTest {
     public void givenQuantity_WhenLengthShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.LENGTH, Unit.SubUnit.FEET, 1, Unit.SubUnit.INCH, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(12,quantity1.getSizeTwo());
+        Assert.assertEquals(12,quantity1.getSizeTwo(),0.2);
     }
 
     @Test
     public void givenQuantity_WhenInchAndFeet_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.LENGTH, Unit.SubUnit.INCH, 24, Unit.SubUnit.FEET, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(2,quantity1.getSizeTwo());
+        Assert.assertEquals(2,quantity1.getSizeTwo(),0.2);
     }
 
     // length tests end here
@@ -61,14 +61,14 @@ class QuantityServiceTest {
     public void givenQuantity_WhenWeight_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.WEIGHT, Unit.SubUnit.GRAM, 1000000, Unit.SubUnit.TON, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(1,quantity1.getSizeTwo());
+        Assert.assertEquals(1,quantity1.getSizeTwo(),0.2);
     }
 
     @Test
     public void givenQuantity_WhenWeightTonAndKG_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.WEIGHT, Unit.SubUnit.TON, 3, Unit.SubUnit.KG, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(3000,quantity1.getSizeTwo());
+        Assert.assertEquals(3000,quantity1.getSizeTwo(),0.2);
     }
 
     //weight tests ends here
@@ -77,14 +77,14 @@ class QuantityServiceTest {
     public void givenQuantity_WhenTemp_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.TEMP, Unit.SubUnit.F, 212, Unit.SubUnit.C, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(100,quantity1.getSizeTwo());
+        Assert.assertEquals(100,quantity1.getSizeTwo(),0.2);
     }
 
     @Test
     public void givenQuantity_WhenTempCToF_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.TEMP, Unit.SubUnit.C, 100, Unit.SubUnit.F, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(212,quantity1.getSizeTwo());
+        Assert.assertEquals(212,quantity1.getSizeTwo(),0.2);
     }
 
     // temp test ends here
@@ -93,13 +93,13 @@ class QuantityServiceTest {
     public void givenQuantity_WhenVolume_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.VOLUME, Unit.SubUnit.ML, 3000, Unit.SubUnit.LITRE, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(3,quantity1.getSizeTwo());
+        Assert.assertEquals(3,quantity1.getSizeTwo(),0.2);
     }
 
     @Test
     public void givenQuantity_WhenVolumeMLToLitre_ShouldReturnConvertedQuantity() {
         Quantity quantity = new Quantity(Unit.MainUnit.VOLUME, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
-        Assert.assertEquals(3,quantity1.getSizeTwo());
+        Assert.assertEquals(3.785,quantity1.getSizeTwo(),0.2);
     }
 }

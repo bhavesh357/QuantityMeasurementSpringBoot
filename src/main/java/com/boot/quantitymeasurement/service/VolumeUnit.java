@@ -3,16 +3,16 @@ package com.boot.quantitymeasurement.service;
 import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.model.Quantity;
 
-public class VolumUnit implements MainUnit {
+public class VolumeUnit implements MainUnit {
     @Override
     public Quantity getConvertedQuantity(Quantity quantity) {
-        int intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
+        double intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
         quantity.setSizeTwo(getInConvertedUnit(quantity.getUnitTwo(),intoBaseUnit));
         return quantity;
     }
 
     @Override
-    public int getInConvertedUnit(Unit.SubUnit unitTwo, int intoBaseUnit) {
+    public double getInConvertedUnit(Unit.SubUnit unitTwo, double intoBaseUnit) {
         switch (unitTwo){
             case LITRE:
                 return intoBaseUnit/1000;
@@ -24,7 +24,7 @@ public class VolumUnit implements MainUnit {
     }
 
     @Override
-    public int getIntoBaseUnit(Unit.SubUnit unitOne, int sizeOne) {
+    public double getIntoBaseUnit(Unit.SubUnit unitOne, double sizeOne) {
         switch (unitOne){
             case LITRE:
                 return sizeOne*1000;

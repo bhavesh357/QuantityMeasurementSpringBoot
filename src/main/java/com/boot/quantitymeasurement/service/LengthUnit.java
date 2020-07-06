@@ -7,12 +7,12 @@ public class LengthUnit implements MainUnit{
 
     @Override
     public Quantity getConvertedQuantity(Quantity quantity) {
-        int intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
+        double intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
         quantity.setSizeTwo(getInConvertedUnit(quantity.getUnitTwo(),intoBaseUnit));
         return quantity;
     }
 
-    public int getInConvertedUnit(Unit.SubUnit unitTwo, int intoBaseUnit) {
+    public double getInConvertedUnit(Unit.SubUnit unitTwo, double intoBaseUnit) {
         switch (unitTwo){
             case FEET:
                 return intoBaseUnit/12;
@@ -26,7 +26,7 @@ public class LengthUnit implements MainUnit{
     }
 
     @Override
-    public int getIntoBaseUnit(Unit.SubUnit unitOne, int sizeOne) {
+    public double getIntoBaseUnit(Unit.SubUnit unitOne, double sizeOne) {
         switch (unitOne){
             case FEET:
                 return sizeOne*12;

@@ -8,18 +8,18 @@ public class Quantity {
 
     private Unit.SubUnit unitOne;
 
-    private int sizeOne;
+    private double sizeOne;
 
     private Unit.SubUnit unitTwo;
 
-    private int sizeTwo;
+    private double sizeTwo;
 
-    public Quantity(Unit.MainUnit mainUnit, Unit.SubUnit unitOne, int sizeOne, Unit.SubUnit unitTwo, int sizetwo) {
+    public Quantity(Unit.MainUnit mainUnit, Unit.SubUnit unitOne, double sizeOne, Unit.SubUnit unitTwo, double sizeTwo) {
         this.mainUnit = mainUnit;
         this.unitOne = unitOne;
         this.sizeOne = sizeOne;
         this.unitTwo = unitTwo;
-        this.sizeTwo = sizetwo;
+        this.sizeTwo = sizeTwo;
     }
 
     public Unit.MainUnit getMainUnit() {
@@ -38,11 +38,11 @@ public class Quantity {
         this.unitOne = unitOne;
     }
 
-    public int getSizeOne() {
+    public double getSizeOne() {
         return sizeOne;
     }
 
-    public void setSizeOne(int sizeOne) {
+    public void setSizeOne(double sizeOne) {
         this.sizeOne = sizeOne;
     }
 
@@ -54,11 +54,11 @@ public class Quantity {
         this.unitTwo = unitTwo;
     }
 
-    public int getSizeTwo() {
+    public double getSizeTwo() {
         return sizeTwo;
     }
 
-    public void setSizeTwo(int sizeTwo) {
+    public void setSizeTwo(double sizeTwo) {
         this.sizeTwo = sizeTwo;
     }
 
