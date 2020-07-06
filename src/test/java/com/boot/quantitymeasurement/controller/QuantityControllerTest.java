@@ -1,6 +1,5 @@
 package com.boot.quantitymeasurement.controller;
 
-import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.model.QuantityConverter;
 import com.boot.quantitymeasurement.service.QuantityService;
@@ -57,11 +56,7 @@ class QuantityControllerTest {
 
     @Test
     void givenQuantity_WhenGet_ShouldReturnConvertedQuantity() throws Exception {
-        QuantityConverter quantity= new QuantityConverter();
-        quantity.setUnit(Unit.MainUnit.LENGTH);
-        quantity.setUnitOne(Unit.SubUnit.FEET);
-        quantity.setUnitTwo(Unit.SubUnit.INCH);
-        quantity.setSizeOne(1);
+        QuantityConverter quantity= new QuantityConverter(Unit.MainUnit.LENGTH,Unit.SubUnit.FEET,1,Unit.SubUnit.INCH,0);
         Mockito.when(service.getConvertedQuantity(Mockito.any(QuantityConverter.class))).
                 thenReturn(Mockito.any(QuantityConverter.class));
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").

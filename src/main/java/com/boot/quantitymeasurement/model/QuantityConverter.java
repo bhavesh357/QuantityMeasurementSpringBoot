@@ -4,7 +4,7 @@ import com.boot.quantitymeasurement.enums.Unit;
 
 public class QuantityConverter {
 
-    private Unit.MainUnit unit;
+    private Unit.MainUnit mainUnit;
 
     private Unit.SubUnit unitOne;
 
@@ -14,12 +14,20 @@ public class QuantityConverter {
 
     private int sizeTwo;
 
-    public Unit.MainUnit getUnit() {
-        return unit;
+    public QuantityConverter(Unit.MainUnit mainUnit, Unit.SubUnit unitOne, int sizeOne, Unit.SubUnit unitTwo, int sizetwo) {
+        this.mainUnit = mainUnit;
+        this.unitOne = unitOne;
+        this.sizeOne = sizeOne;
+        this.unitTwo = unitTwo;
+        this.sizeTwo = sizetwo;
     }
 
-    public void setUnit(Unit.MainUnit unit) {
-        this.unit = unit;
+    public Unit.MainUnit getMainUnit() {
+        return mainUnit;
+    }
+
+    public void setMainUnit(Unit.MainUnit mainUnit) {
+        this.mainUnit = mainUnit;
     }
 
     public Unit.SubUnit getUnitOne() {
