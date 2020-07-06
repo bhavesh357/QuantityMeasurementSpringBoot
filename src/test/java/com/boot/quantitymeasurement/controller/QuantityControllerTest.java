@@ -57,9 +57,9 @@ class QuantityControllerTest {
     @Test
     void givenQuantity_WhenGet_ShouldReturnConvertedQuantity() throws Exception {
         QuantityConverter quantity= new QuantityConverter(Unit.MainUnit.LENGTH,Unit.SubUnit.FEET,1,Unit.SubUnit.INCH,0);
-        Mockito.when(service.getConvertedQuantity(Mockito.any(QuantityConverter.class))).
-                thenReturn(Mockito.any(QuantityConverter.class));
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
+        Mockito.when(service.getConvertedQuantity(quantity)).
+                thenReturn(quantity);
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/unit").
                 accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(quantity)).contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
