@@ -40,6 +40,8 @@ public class QuantityService {
             case TEMP:
                 mainUnitConverter = new TempUnit();
                 break;
+            default:
+                mainUnitConverter = new VolumUnit();
         }
         return mainUnitConverter.getConvertedQuantity(quantity);
     }
