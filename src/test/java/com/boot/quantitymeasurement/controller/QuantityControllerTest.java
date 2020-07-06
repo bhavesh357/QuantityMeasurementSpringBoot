@@ -1,11 +1,9 @@
-package com.boot.quantitymeasurement.service;
+package com.boot.quantitymeasurement.controller;
 
-import com.boot.quantitymeasurement.controller.QuantityController;
 import com.boot.quantitymeasurement.dto.MainUnitDto;
 import com.boot.quantitymeasurement.enums.Unit;
-import com.boot.quantitymeasurement.model.MainUnit;
 import com.boot.quantitymeasurement.model.QuantityConverter;
-import com.boot.quantitymeasurement.model.SubUnit;
+import com.boot.quantitymeasurement.service.QuantityService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -27,13 +25,13 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class QuantityServiceTest {
+class QuantityControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    private List<MainUnit> mainUnits;
-    private List<SubUnit> subUnits;
+    private List<Unit.MainUnit> mainUnits;
+    private List<Unit.SubUnit> subUnits;
 
     @MockBean
     private QuantityService service;

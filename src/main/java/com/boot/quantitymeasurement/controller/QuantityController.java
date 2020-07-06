@@ -1,9 +1,8 @@
 package com.boot.quantitymeasurement.controller;
 
 import com.boot.quantitymeasurement.dto.MainUnitDto;
-import com.boot.quantitymeasurement.model.MainUnit;
+import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.model.QuantityConverter;
-import com.boot.quantitymeasurement.model.SubUnit;
 import com.boot.quantitymeasurement.service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,12 @@ public class QuantityController {
     QuantityService service;
 
     @GetMapping("/")
-    public List<MainUnit> getMainUnit(){
+    public List<Unit.MainUnit> getMainUnit(){
         return service.getMainUnit();
     }
 
     @GetMapping("/unit")
-    public List<SubUnit> getSubUnit(@RequestBody MainUnitDto mainUnit){
+    public List<Unit.SubUnit> getSubUnit(@RequestBody MainUnitDto mainUnit){
         return service.getSubUnit(mainUnit);
     }
 
