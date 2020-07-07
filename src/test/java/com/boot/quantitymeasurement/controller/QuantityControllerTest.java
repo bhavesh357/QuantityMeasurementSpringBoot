@@ -4,6 +4,7 @@ import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 import com.boot.quantitymeasurement.service.QuantityService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -84,6 +85,15 @@ class QuantityControllerTest {
                 accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(quantity)).contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper sub unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void givenMainUnit_WhenImproper_ShouldReturnNull() throws Exception {
+        Mockito.when(service.getSubUnit(Mockito.any())).thenThrow(new QuantityException(400,"Enter proper main unit"));
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
+                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(Unit.MainUnit.Hair)).contentType(MediaType.APPLICATION_JSON);
+        MvcResult mvcResult = mockMvc.perform(request).andReturn();
+        Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper main unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
     }
 
 }

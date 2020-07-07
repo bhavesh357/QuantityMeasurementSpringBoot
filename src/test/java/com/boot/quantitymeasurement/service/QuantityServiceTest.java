@@ -109,7 +109,7 @@ class QuantityServiceTest {
 
 
     @Test
-    public void givenMainUnit_WhenImproper_ShouldreturnNull(){
+    public void givenMainUnit_WhenImproper_ShouldReturnNull(){
         try{
             service.getSubUnit(Unit.MainUnit.Hair);
         }
