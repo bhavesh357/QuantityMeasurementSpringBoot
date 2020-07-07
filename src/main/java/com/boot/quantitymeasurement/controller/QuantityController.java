@@ -28,10 +28,11 @@ public class QuantityController {
 
     @PostMapping("/unit")
     public Response getConvertedQuantity(@RequestBody Quantity quantity){
-        try {
-            return new Response(200,"Successful",service.getConvertedQuantity(quantity));
-        }catch (QuantityException ex) {
-            return new Response(ex.getCode(),ex.getMessage(),null);
-        }
+        return new Response(200,"Successful",service.getConvertedQuantity(quantity));
+    }
+
+    @ExceptionHandler(QuantityException.class)
+    public Response handleQuantityException(QuantityException ex){
+        return new Response(ex.getCode(),ex.getMessage(),null);
     }
 }

@@ -76,4 +76,14 @@ class QuantityControllerTest {
         Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper main unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
     }
 
+    @Test
+    public void givenImproperQuantity_WhenSubUnit_ShouldReturnConvertedQuantity() throws Exception{
+        Quantity quantity = new Quantity(Unit.MainUnit.Hair, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
+        Mockito.when(service.getConvertedQuantity(Mockito.any())).thenThrow(new QuantityException(400,"Enter proper sub unit"));
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/unit").
+                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(quantity)).contentType(MediaType.APPLICATION_JSON);
+        MvcResult mvcResult = mockMvc.perform(request).andReturn();
+        Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper sub unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
+    }
+
 }
