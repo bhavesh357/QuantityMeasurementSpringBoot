@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.service;
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 
 public class TempUnit implements MainUnit {
@@ -16,8 +17,10 @@ public class TempUnit implements MainUnit {
         switch (unitTwo) {
             case F:
                 return ( (intoBaseUnit/5) * 9) +32;
-            default:
+            case C:
                 return intoBaseUnit;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 
@@ -26,8 +29,10 @@ public class TempUnit implements MainUnit {
         switch (unitOne) {
             case F:
                 return ( (sizeOne-32) / 9) * 5;
-            default:
+            case C:
                 return sizeOne;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 }

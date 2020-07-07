@@ -2,6 +2,7 @@ package com.boot.quantitymeasurement.service;
 
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,7 @@ class QuantityServiceTest {
         Quantity quantity1 = service.getConvertedQuantity(quantity);
         Assert.assertEquals(12,quantity1.getSizeTwo(),0.2);
     }
+
 
     @Test
     public void givenQuantity_WhenInchAndFeet_ShouldReturnConvertedQuantity() {
@@ -101,5 +103,38 @@ class QuantityServiceTest {
         Quantity quantity = new Quantity(Unit.MainUnit.VOLUME, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
         Quantity quantity1 = service.getConvertedQuantity(quantity);
         Assert.assertEquals(3.785,quantity1.getSizeTwo(),0.2);
+    }
+
+    //volume tests ends here
+
+
+    @Test
+    public void givenMainUnit_WhenImproper_ShouldReturnNull(){
+        try{
+            service.getSubUnit(Unit.MainUnit.Hair);
+        }
+        catch (QuantityException ex) {
+            Assert.assertEquals(400, ex.getCode());
+        }
+    }
+
+    @Test
+    public void givenImproperQuantity_WhenMainUnit_ShouldReturnConvertedQuantity(){
+        Quantity quantity = new Quantity(Unit.MainUnit.Hair, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
+        try{
+            Quantity convertedQuantity = service.getConvertedQuantity(quantity);
+        }catch (QuantityException ex){
+            Assert.assertEquals(400,ex.getCode());
+        }
+    }
+
+    @Test
+    public void givenImproperQuantity_WhenSubUnit_ShouldReturnConvertedQuantity(){
+        Quantity quantity = new Quantity(Unit.MainUnit.VOLUME, Unit.SubUnit.FEET, 1, Unit.SubUnit.CM, 0);
+        try{
+            Quantity convertedQuantity = service.getConvertedQuantity(quantity);
+        }catch (QuantityException ex){
+            Assert.assertEquals(400,ex.getCode());
+        }
     }
 }

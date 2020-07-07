@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.service;
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 
 
@@ -20,8 +21,10 @@ public class WeightUnit implements MainUnit {
                 return intoBaseUnit/1000;
             case TON:
                 return intoBaseUnit/1000000;
-            default:
+            case GRAM:
                 return intoBaseUnit;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 
@@ -31,8 +34,10 @@ public class WeightUnit implements MainUnit {
                 return sizeOne*1000;
             case TON:
                 return sizeOne*1000000;
-            default:
+            case GRAM:
                 return sizeOne;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 }
