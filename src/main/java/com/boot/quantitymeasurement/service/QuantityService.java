@@ -2,6 +2,7 @@ package com.boot.quantitymeasurement.service;
 
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +40,11 @@ public class QuantityService {
             case TEMP:
                 mainUnitConverter = new TempUnit();
                 break;
-            default:
+            case VOLUME:
                 mainUnitConverter = new VolumeUnit();
+                break;
+            default:
+                throw new QuantityException(400,"Enter proper main unit");
         }
         return mainUnitConverter.getConvertedQuantity(quantity);
     }
