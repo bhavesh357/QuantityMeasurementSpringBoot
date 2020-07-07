@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.controller;
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 import com.boot.quantitymeasurement.service.QuantityService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,6 +64,16 @@ class QuantityControllerTest {
                 accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(quantity)).contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
+    }
+
+    @Test
+    public void givenImproperQuantity_WhenMainUnit_ShouldReturnConvertedQuantity() throws Exception{
+        Quantity quantity = new Quantity(Unit.MainUnit.Hair, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
+        Mockito.when(service.getConvertedQuantity(Mockito.any())).thenThrow(new QuantityException(400,"Enter proper main unit"));
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/unit").
+                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(quantity)).contentType(MediaType.APPLICATION_JSON);
+        MvcResult mvcResult = mockMvc.perform(request).andReturn();
+        Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper main unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
     }
 
 }

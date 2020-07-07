@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.controller;
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 import com.boot.quantitymeasurement.model.Response;
 import com.boot.quantitymeasurement.service.QuantityService;
@@ -27,6 +28,10 @@ public class QuantityController {
 
     @PostMapping("/unit")
     public Response getConvertedQuantity(@RequestBody Quantity quantity){
-        return new Response(200,"Successful",service.getConvertedQuantity(quantity));
+        try {
+            return new Response(200,"Successful",service.getConvertedQuantity(quantity));
+        }catch (QuantityException ex) {
+            return new Response(ex.getCode(),ex.getMessage(),null);
+        }
     }
 }
