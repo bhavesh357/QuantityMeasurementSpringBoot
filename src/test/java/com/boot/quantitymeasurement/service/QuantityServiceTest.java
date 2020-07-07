@@ -109,8 +109,18 @@ class QuantityServiceTest {
 
 
     @Test
-    public void givenImproperQuantity_WhenMainUnit_ShouldreturnConvertedQuantity(){
+    public void givenImproperQuantity_WhenMainUnit_ShouldReturnConvertedQuantity(){
         Quantity quantity = new Quantity(Unit.MainUnit.Hair, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
+        try{
+            Quantity convertedQuantity = service.getConvertedQuantity(quantity);
+        }catch (QuantityException ex){
+            Assert.assertEquals(400,ex.getCode());
+        }
+    }
+
+    @Test
+    public void givenImproperQuantity_WhenSubUnit_ShouldReturnConvertedQuantity(){
+        Quantity quantity = new Quantity(Unit.MainUnit.VOLUME, Unit.SubUnit.FEET, 1, Unit.SubUnit.CM, 0);
         try{
             Quantity convertedQuantity = service.getConvertedQuantity(quantity);
         }catch (QuantityException ex){

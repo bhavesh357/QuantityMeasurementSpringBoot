@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.service;
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 
 public class LengthUnit implements MainUnit{
@@ -20,8 +21,10 @@ public class LengthUnit implements MainUnit{
                 return (int) (intoBaseUnit*2.5);
             case YARD:
                 return intoBaseUnit/36;
-            default:
+            case INCH:
                 return intoBaseUnit;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 
@@ -34,8 +37,10 @@ public class LengthUnit implements MainUnit{
                 return (int) (sizeOne/2.5);
             case YARD:
                 return sizeOne*36;
-            default:
+            case INCH:
                 return sizeOne;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 }

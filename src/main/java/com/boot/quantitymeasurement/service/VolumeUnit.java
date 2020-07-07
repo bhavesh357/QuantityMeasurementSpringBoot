@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.service;
 
 import com.boot.quantitymeasurement.enums.Unit;
+import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
 
 public class VolumeUnit implements MainUnit {
@@ -18,8 +19,10 @@ public class VolumeUnit implements MainUnit {
                 return intoBaseUnit/1000;
             case GALLON:
                 return intoBaseUnit/3785;
-            default:
+            case ML:
                 return intoBaseUnit;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 
@@ -30,8 +33,10 @@ public class VolumeUnit implements MainUnit {
                 return sizeOne*1000;
             case GALLON:
                 return sizeOne*3785;
-            default:
+            case ML:
                 return sizeOne;
+            default:
+                throw new QuantityException(400,"Enter proper Sub Unit");
         }
     }
 }
