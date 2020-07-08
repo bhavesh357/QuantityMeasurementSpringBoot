@@ -2,16 +2,23 @@ package com.boot.quantitymeasurement.model;
 
 import com.boot.quantitymeasurement.enums.Unit;
 
+import javax.validation.constraints.NotNull;
+
 public class Quantity {
 
+    @NotNull
     private Unit.MainUnit mainUnit;
 
+    @NotNull
     private Unit.SubUnit unitOne;
 
+    @NotNull
     private double sizeOne;
 
+    @NotNull
     private Unit.SubUnit unitTwo;
 
+    @NotNull
     private double sizeTwo;
 
     public Quantity(Unit.MainUnit mainUnit, Unit.SubUnit unitOne, double sizeOne, Unit.SubUnit unitTwo, double sizeTwo) {
