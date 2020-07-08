@@ -7,6 +7,7 @@ import com.boot.quantitymeasurement.model.Response;
 import com.boot.quantitymeasurement.service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -60,8 +61,15 @@ public class QuantityController {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public Response handleValidationExceptions(
             MethodArgumentTypeMismatchException ex) {
-        Map<String, String> errors = new HashMap<>();
         return new Response(400,"Please Enter Valid Unit",ex.getValue()+" is not valid");
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public Response handleWrongMainUnitExceptions(
+            HttpMessageNotReadableException ex) {
+        HttpMessageNotReadableException ex1 = ex;
+        return new Response(400,"Please Enter Valid Unit",null);
     }
 
     @ExceptionHandler(Exception.class)
