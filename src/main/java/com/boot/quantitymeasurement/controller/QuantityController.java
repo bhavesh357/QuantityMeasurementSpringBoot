@@ -64,7 +64,8 @@ public class QuantityController {
         return new Response(400,"Please Enter Valid Unit",ex.getValue()+" is not valid");
     }
 
-
-
-
+    @ExceptionHandler(Exception.class)
+    public Response handleGenericExceptions(Exception e){
+        return new Response(500,"Internal error",e.getCause());
+    }
 }
