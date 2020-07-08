@@ -1,6 +1,7 @@
 package com.boot.quantitymeasurement.service;
 
 
+import com.boot.quantitymeasurement.enums.QuantityError;
 import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
@@ -44,7 +45,7 @@ public class QuantityService {
                 mainUnitConverter = new VolumeUnit();
                 break;
             default:
-                throw new QuantityException(400,"Enter proper main unit");
+                throw new QuantityException(QuantityError.INVALID_MAIN_UNIT);
         }
         return mainUnitConverter.getConvertedQuantity(quantity);
     }

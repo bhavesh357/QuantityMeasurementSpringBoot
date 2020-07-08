@@ -40,7 +40,7 @@ public class QuantityController {
 
     @ExceptionHandler(QuantityException.class)
     public Response handleQuantityException(QuantityException ex){
-        return new Response(ex.getCode(),ex.getMessage(),null);
+        return new Response(ex.getError().getCode(),ex.getError().getMessage(),null);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -66,6 +66,6 @@ public class QuantityController {
 
     @ExceptionHandler(Exception.class)
     public Response handleGenericExceptions(Exception e){
-        return new Response(500,"Internal error",e.getCause());
+        return new Response(500,"Try again later",null);
     }
 }

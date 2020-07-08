@@ -114,7 +114,7 @@ class QuantityServiceTest {
             service.getSubUnit(Unit.MainUnit.Hair);
         }
         catch (QuantityException ex) {
-            Assert.assertEquals(400, ex.getCode());
+            Assert.assertEquals(400, ex.getError().getCode());
         }
     }
 
@@ -124,7 +124,7 @@ class QuantityServiceTest {
         try{
             Quantity convertedQuantity = service.getConvertedQuantity(quantity);
         }catch (QuantityException ex){
-            Assert.assertEquals(400,ex.getCode());
+            Assert.assertEquals(400,ex.getError().getCode());
         }
     }
 
@@ -134,7 +134,7 @@ class QuantityServiceTest {
         try{
             Quantity convertedQuantity = service.getConvertedQuantity(quantity);
         }catch (QuantityException ex){
-            Assert.assertEquals(400,ex.getCode());
+            Assert.assertEquals(400,ex.getError().getCode());
         }
     }
 }

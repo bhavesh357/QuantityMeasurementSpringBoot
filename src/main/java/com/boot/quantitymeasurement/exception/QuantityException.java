@@ -1,27 +1,19 @@
 package com.boot.quantitymeasurement.exception;
 
+import com.boot.quantitymeasurement.enums.QuantityError;
+
 public class QuantityException extends RuntimeException{
-    private int code;
-    private String message;
+    private QuantityError error;
 
-    public int getCode() {
-        return code;
+    public QuantityException(QuantityError error) {
+        this.error = error;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public QuantityError getError() {
+        return error;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public QuantityException(int code, String message) {
-        this.code = code;
-        this.message = message;
+    public void setError(QuantityError error) {
+        this.error = error;
     }
 }
