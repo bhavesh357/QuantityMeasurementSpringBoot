@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class QuantityController {
     }
 
     @GetMapping("/unit")
-    public Response getSubUnit(@RequestParam Unit.MainUnit mainUnit){
+    public Response getSubUnit(@RequestParam(value = "mainUnit") Unit.MainUnit mainUnit){
         return new Response(200,"Successful",service.getSubUnit(mainUnit));
     }
 
@@ -54,6 +55,16 @@ public class QuantityController {
         });
         return new Response(400,"Please Enter Valid Quantity",errors);
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public Response handleValidationExceptions(
+            MethodArgumentTypeMismatchException ex) {
+        Map<String, String> errors = new HashMap<>();
+        return new Response(400,"Please Enter Valid Unit",ex.getValue()+" is not valid");
+    }
+
+
 
 
 }

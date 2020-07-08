@@ -50,7 +50,7 @@ class QuantityControllerTest {
     void givenMainUnit_WhenGet_ShouldReturnSubUnitList() throws Exception {
         Mockito.when(service.getSubUnit(Mockito.any(Unit.MainUnit.class))).thenReturn(subUnits);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
-                accept(MediaType.ALL).param(new ObjectMapper().writeValueAsString(Unit.MainUnit.LENGTH)).
+                accept(MediaType.ALL).param("mainUnit","LENGTH").
                 contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
@@ -91,9 +91,9 @@ class QuantityControllerTest {
     public void givenMainUnit_WhenImproper_ShouldReturnNull() throws Exception {
         Mockito.when(service.getSubUnit(Mockito.any())).thenThrow(new QuantityException(400,"Enter proper main unit"));
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/unit").
-                accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(Unit.MainUnit.Hair)).contentType(MediaType.APPLICATION_JSON);
+                accept(MediaType.ALL).param("mainUnit","hair").contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
-        Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper main unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
+        Assert.assertEquals("{\"code\":400,\"message\":\"Please Enter Valid Unit\",\"object\":\"hair is not valid\"}",mvcResult.getResponse().getContentAsString());
     }
 
     @Test
