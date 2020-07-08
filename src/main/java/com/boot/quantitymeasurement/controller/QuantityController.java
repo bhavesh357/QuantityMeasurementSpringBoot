@@ -1,5 +1,6 @@
 package com.boot.quantitymeasurement.controller;
 
+import com.boot.quantitymeasurement.enums.QuantityError;
 import com.boot.quantitymeasurement.enums.Unit;
 import com.boot.quantitymeasurement.exception.QuantityException;
 import com.boot.quantitymeasurement.model.Quantity;
@@ -54,26 +55,25 @@ public class QuantityController {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        return new Response(400,"Please Enter Valid Quantity",errors);
+        return new Response(QuantityError.INVALID_QUANTITY.getCode(),QuantityError.INVALID_QUANTITY.getMessage(),errors);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public Response handleValidationExceptions(
             MethodArgumentTypeMismatchException ex) {
-        return new Response(400,"Please Enter Valid Unit",ex.getValue()+" is not valid");
+        return new Response(QuantityError.INVALID_UNIT.getCode(),QuantityError.INVALID_UNIT.getMessage(),ex.getValue()+" is not valid");
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public Response handleWrongMainUnitExceptions(
+    public Response handleWrongUnitExceptions(
             HttpMessageNotReadableException ex) {
-        HttpMessageNotReadableException ex1 = ex;
-        return new Response(400,"Please Enter Valid Unit",null);
+        return new Response(QuantityError.INVALID_UNIT.getCode(),QuantityError.INTERNAL_ERROR.getMessage(),null);
     }
 
     @ExceptionHandler(Exception.class)
     public Response handleGenericExceptions(Exception e){
-        return new Response(500,"Try again later",null);
+        return new Response(QuantityError.INTERNAL_ERROR.getCode(),QuantityError.INTERNAL_ERROR.getMessage(),null);
     }
 }
