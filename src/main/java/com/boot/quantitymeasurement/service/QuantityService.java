@@ -38,7 +38,7 @@ public class QuantityService {
             case WEIGHT:
                 mainUnitConverter= new WeightUnit();
                 break;
-            case TEMP:
+            case TEMPERATURE:
                 mainUnitConverter = new TempUnit();
                 break;
             case VOLUME:
