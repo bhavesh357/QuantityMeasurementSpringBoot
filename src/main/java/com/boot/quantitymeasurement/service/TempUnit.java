@@ -9,7 +9,8 @@ public class TempUnit implements MainUnit {
     @Override
     public Quantity getConvertedQuantity(Quantity quantity) {
         double intoBaseUnit = getIntoBaseUnit(quantity.getUnitOne(), quantity.getSizeOne());
-        quantity.setSizeTwo(getInConvertedUnit(quantity.getUnitTwo(),intoBaseUnit));
+        int size= (int) Math.round(getInConvertedUnit(quantity.getUnitTwo(),intoBaseUnit)*1000);
+        quantity.setSizeTwo((double) size/1000);
         return quantity;
     }
 

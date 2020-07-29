@@ -68,6 +68,7 @@ class QuantityControllerTest {
         Assert.assertEquals(200,mvcResult.getResponse().getStatus());
     }
 
+    /*
     @Test
     public void givenImproperQuantity_WhenMainUnit_ShouldReturnConvertedQuantity() throws Exception{
         Quantity quantity = new Quantity(Unit.MainUnit.Hair, Unit.SubUnit.GALLON, 1, Unit.SubUnit.LITRE, 0);
@@ -87,6 +88,8 @@ class QuantityControllerTest {
         MvcResult mvcResult = mockMvc.perform(request).andReturn();
         Assert.assertEquals("{\"code\":400,\"message\":\"Enter proper Sub Unit\",\"object\":null}",mvcResult.getResponse().getContentAsString());
     }
+
+     */
 
     @Test
     public void givenMainUnit_WhenImproper_ShouldReturnNull() throws Exception {
